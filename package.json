@@ -8,6 +8,9 @@
     "build": "tsc -b && vite build",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:all": "npm test && cargo test --manifest-path src-tauri/Cargo.toml",
+    "package:debug": "tauri build --debug --no-bundle",
+    "package:nsis": "tauri build --bundles nsis --no-sign",
     "tauri": "tauri"
   },
   "dependencies": {

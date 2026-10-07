@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Todo Clear",
+  "productName": "komorebi-desktop",
   "version": "0.1.0",
   "identifier": "app.todoclear.desktop",
   "build": {
@@ -13,7 +13,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Todo Clear",
+        "title": "komorebi-desktop",
         "width": 1280,
         "height": 720,
         "decorations": false,
@@ -32,8 +32,20 @@
   },
   "bundle": {
     "active": true,
-    "targets": ["msi", "nsis"],
+    "targets": ["nsis"],
     "shortDescription": "半透明のデスクトップToDoウィジェット",
-    "longDescription": "Windowsデスクトップに常駐する、ローカルファーストの半透明ToDoボードです。"
+    "longDescription": "Windowsデスクトップに常駐する、ローカルファーストの半透明ToDoボードです。",
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": ["Japanese", "English"],
+        "displayLanguageSelector": false,
+        "compression": "lzma"
+      }
+    }
   }
 }

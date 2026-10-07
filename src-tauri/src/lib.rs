@@ -646,7 +646,7 @@ fn setup_tray(app: &AppHandle) -> Result<(), Box<dyn std::error::Error>> {
     let quit = MenuItem::with_id(app, "quit", "終了", true, None::<&str>)?;
     let menu = Menu::with_items(app, &[&toggle, &settings, &autostart, &quit])?;
     let mut builder = TrayIconBuilder::new()
-        .tooltip("Todo Clear")
+        .tooltip("komorebi-desktop")
         .menu(&menu)
         .show_menu_on_left_click(true)
         .on_menu_event(|app, event| match event.id().as_ref() {

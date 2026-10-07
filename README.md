@@ -35,6 +35,21 @@ Windowsデスクトップに、半透明のToDoカードをそっと置いてお
 - SQLite（rusqlite）
 - Windows WebView2
 
+## 日常利用向けインストール
+
+リリース版NSISインストーラーを生成します。
+
+```powershell
+npm install
+npm run package:nsis
+```
+
+生成された`src-tauri/target/release/bundle/nsis/`内のセットアップexeを実行してください。現在のユーザー単位でインストールされるため、通常は管理者権限を必要としません。Windows WebView2が未導入の場合は、インストーラーがMicrosoftのBootstrapperを取得して導入します。
+
+インストール後はスタートメニューから`komorebi-desktop`を起動できます。アプリはトレイに常駐し、設定からログイン時の自動起動を有効化できます。更新時は新しいセットアップexeを実行してください。
+
+初版はコード署名を行っていないため、Windows SmartScreenの警告が表示される場合があります。タスクやカード配置などのデータはアンインストール後も削除せず、再インストール時に引き継ぎます。
+
 ## Development
 
 必要環境：
@@ -57,14 +72,15 @@ npm run tauri dev
 npm test
 npm run build
 cargo test --manifest-path src-tauri/Cargo.toml
-npm run tauri build -- --debug --no-bundle
+npm run test:all
+npm run package:debug
 ```
 
-デバッグ実行形式は`src-tauri/target/debug/todo-clear.exe`に生成されます。
+デバッグ実行形式は`src-tauri/target/debug/todo-clear.exe`に生成されます。正式インストーラーは`src-tauri/target/release/bundle/nsis/`に生成されます。
 
 ## Data
 
-タスク、カード配置、テーマ、透明度などの設定は、OSのアプリデータディレクトリにあるSQLiteデータベースへ保存されます。ネットワーク接続やアカウントは必要ありません。
+タスク、カード配置、テーマ、透明度などの設定は、OSのアプリデータディレクトリにあるSQLiteデータベースへ保存されます。内部識別子を維持しているため、旧Todo Clear版からのデータも引き継がれます。ネットワーク接続やアカウントは必要ありません（WebView2の初回導入を除く）。
 
 ## Scope
 
