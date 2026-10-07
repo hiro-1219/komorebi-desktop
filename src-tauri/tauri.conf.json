@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Todo Clear",
+  "version": "0.1.0",
+  "identifier": "app.todoclear.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Todo Clear",
+        "width": 1280,
+        "height": 720,
+        "decorations": false,
+        "transparent": true,
+        "noRedirectionBitmap": true,
+        "shadow": false,
+        "resizable": false,
+        "skipTaskbar": true,
+        "alwaysOnTop": false,
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["msi", "nsis"],
+    "shortDescription": "半透明のデスクトップToDoウィジェット",
+    "longDescription": "Windowsデスクトップに常駐する、ローカルファーストの半透明ToDoボードです。"
+  }
+}
